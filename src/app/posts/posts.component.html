@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="starter-template">
+        <h1>Mozambique Travel Blog</h1>
+        <p class="lead">Important News About Mozambique</p>
+
+    </div>
+    <div class="row" *ngIf="projects">
+    	<div class="col-md-3" *ngFor="let post of projects">
+            <figure>
+              <img src="{{post.better_featured_image.media_details.sizes.tileimage
+.source_url}}" alt="{{post.better_featured_image.alt_text}}" width="100%">
+            </figure>
+    		<h5 [innerHTML] = "post.title.rendered" class="blog-heading"></h5>
+    		<a [routerLink] = "['/post', post.slug]" class="btn btn-info"> Read More </a>
+            <br><hr><br>
+    	</div>
+    </div>
+</div>

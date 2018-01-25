@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+    	<div class="col-md-8 offset-md-2">
+    		<div *ngIf="project">
+    			<figure>
+	              <img src="{{project[0].better_featured_image.source_url}}" alt="{{project[0].better_featured_image.alt_text}}" width="100%">
+	            </figure>
+				<h1 [innerHTML] = "project[0].title.rendered" class="text-primary text-center pb-2"></h1>
+				<div><strong [innerHTML] = "project[0].excerpt.rendered" class="media-outputs"></strong></div>
+			</div>
+			<div [innerHTML] = "cdata" class="media-outputs"></div>
+			<div *ngIf="button_show">
+				<button (click)="getfulldata()" class="btn btn-success">Read More</button>
+			</div>
+    	</div>
+    </div>
+</div>
+<br><br>
