@@ -8,10 +8,10 @@
 				<h1 [innerHTML] = "project[0].title.rendered" class="text-primary text-center pb-2"></h1>
 				<div><strong [innerHTML] = "project[0].excerpt.rendered" class="media-outputs"></strong></div>
 			</div>
-			<div [innerHTML] = "cdata" class="media-outputs"></div>
-			<div *ngIf="button_show">
+			<div [innerHTML] = "this.project[0].content.rendered" class="media-outputs"></div>
+			<!-- <div *ngIf="button_show">
 				<button (click)="getfulldata()" class="btn btn-success">Read More</button>
-			</div>
+			</div> -->
     	</div>
     </div>
 </div>

@@ -20,28 +20,48 @@ export class PostComponent implements OnInit {
   button_show: any;
   constructor(private _apiService: ApiService, private activeRoute: ActivatedRoute, meta: Meta, title: Title) {
       // Sets the <title></title>
-      title.setTitle("My Blog Post");
+      this.activeRoute.data.map(data => data.cres.json() ).subscribe((post) => {
+      this.project = post;
+      //console.log(post);
+      this._apiService.setTitle(this.project[0].title.rendered + " | Mozambique Travel");
+      this._apiService.setDesc(this.project[0].title.rendered);
+      this.button_show = true;
+    })
       //console.log(title);
   };
   //private _apiService: ApiService
   //public users$: Observable<ApiService>
   get stateName() {
-    return this.show ? 'show' : 'show'
+    return this.show ? 'show' : 'show';
   }
   getfulldata(){
     this.cdata = this.project[0].content.rendered;
     this.button_show = false;
   };
   ngOnInit() {
-  	this.sub = this.activeRoute.params.subscribe(params => {
-       this.id = params['id']; // (+) converts string 'id' to a number
-       // In a real app: dispatch action to load the details here.
-    });
-    this._apiService.getPostById(this.id).subscribe(data => {
-      	this.project = data;
-        this.button_show = true;
-      	console.log(this.project);
-    });
+  	// this.sub = this.activeRoute.params.subscribe(params => {
+   //     this.id = params['id']; // (+) converts string 'id' to a number
+   //     // In a real app: dispatch action to load the details here.
+   //  });
+    // this._apiService.getPostById(this.id).subscribe(data => {
+    //   	this.project = data;
+    //     this.button_show = true;
+    //     this._apiService.setTitle(this.project[0].title.rendered);
+    //     this._apiService.setDesc(this.project[0].title.rendered);
+    // });
+  }
+  ngAfterViewInit() {
+    //var jQuery = require("jquery-easing");
+    $(document).ready(function() {
+      $("div.gallery_img a").fancyboxPlus();
+      $("div.gallery_img a").fancyboxPlus({
+        'transitionIn'  :  'elastic',
+        'transitionOut'  :  'elastic',
+        'speedIn'    :  200,
+        'speedOut'    :  200,
+        'overlayShow'  :  true
+      });
+    }
   }
 
 }
